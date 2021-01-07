@@ -49,8 +49,27 @@
     <script>
       const path = require('path')
       const os = require('os')
+      const { ipcRenderer } = require('electron')
+
+      const form = document.getElementById('image-form')
+      const silder = document.getElementById('slider')
+      const img = document.getElementById('img')
 
       document.getElementById('output-path').innerText = path.join(os.homedir(), 'imageshrink')
+
+      // OnSubmit
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+
+        const imgPath = img.files[0].path
+        const quality = silder.value
+
+        ipcRenderer.send('image:minimize', {
+          imgPath,
+          quality
+        })
+      })
+
     </script>
 </body>
 </html>
