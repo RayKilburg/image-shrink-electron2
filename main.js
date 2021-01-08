@@ -119,7 +119,7 @@ try {
 
     shell.openPath(dest)
 
-
+    mainWindow.webContents.send('image:done')
 } catch (err) {
     console.log(err)
 }
