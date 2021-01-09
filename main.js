@@ -5,11 +5,14 @@ const imagemin = require('imagemin')
 const imageminMozjpeg = require('imagemin-mozjpeg')
 const imageminPngquant = require('imagemin-pngQuant')
 const slash = require('slash')
+const log = require('electron-log')
 
 // Set env
-process.env.NODE_ENV = 'developement'
+process.env.NODE_ENV = 'production'
 
+// In Development?
 const isDev = process.env.NODE_ENV !== 'production' ? true :false
+// Mac User Stuff
 const isMac = process.platform === 'darwin' ? true : false
 
 let mainWindow
@@ -96,6 +99,7 @@ const menu = [
     ] : [])
 ]
 
+// Image Min Stuff
 ipcMain.on('image:minimize', (e, options) => {
     options.dest = path.join(os.homedir(), 'imageshrink')
     shrinkImage(options)
@@ -115,13 +119,13 @@ try {
         ]
     })
 
-    console.log(files)
+    log.info(files)
 
     shell.openPath(dest)
 
     mainWindow.webContents.send('image:done')
 } catch (err) {
-    console.log(err)
+    log.error(err)
 }
 }
 
