@@ -1,6 +1,7 @@
 # image-shrink-electron2
 
-- Image Shrink is an built to optimize the file size of jpg and png images
+- Image Shrink is an app built to optimize the file size of jpg and png images
+- Image Shrink will shrink the file size of your photos with little to no loss of image quality
 - This App was built with Electron Js
 
 <br>
